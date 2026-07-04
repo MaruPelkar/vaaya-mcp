@@ -31,7 +31,18 @@ the payment *is* the auth). Failed calls are never charged.
 
 ## Install
 
-### Remote (Streamable HTTP + OAuth — recommended)
+### One command (recommended)
+
+```bash
+npx vaaya install
+```
+
+Sets up the Vaaya MCP server for every agent it detects on your machine —
+Claude Code, Claude Desktop, Cursor, Codex — plus the agent skill.
+Idempotent: re-run any time to update. Then restart your agent; the first
+Vaaya call opens a short browser approval (sign-up happens right there).
+
+### Remote (Streamable HTTP + OAuth)
 
 <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=vaaya&config=eyJ1cmwiOiJodHRwczovL3ZhYXlhLmFpL21jcCJ9"><img src="https://cursor.com/deeplink/mcp-install-dark.svg" alt="Add Vaaya to Cursor" height="32" /></a>
 
@@ -48,7 +59,7 @@ claude mcp add --transport http vaaya https://vaaya.ai/mcp
 On first use your client runs the OAuth flow in the browser; approve and you're
 connected. Revoke anytime at [vaaya.ai/connected-apps](https://vaaya.ai/connected-apps).
 
-### npm stdio shim (for stdio-only clients: Codex CLI, opencode, …)
+### npm stdio shim (for stdio-only clients: opencode, …)
 
 ```json
 { "mcpServers": { "vaaya": { "command": "npx", "args": ["-y", "@vaaya/mcp"] } } }
@@ -59,6 +70,23 @@ OAuth flow on first call, stores a refresh token locally (`0o600`), and proxies
 the live tool list from the backend — new server-side tools appear without a
 shim upgrade. It also ships an agent skill so your client routes every
 capability gap through `consult` automatically.
+
+### Agent skill (works across 70+ agents)
+
+```bash
+npx skills add MaruPelkar/vaaya-mcp
+```
+
+Installs the [`vaaya` skill](skills/vaaya/SKILL.md) for Claude Code, Codex,
+Cursor, Gemini CLI, Copilot, and any other client that supports the open
+[Agent Skills](https://agentskills.io) standard. The skill bootstraps the
+Vaaya MCP server if it's missing and keeps the install updated.
+
+### As a plugin
+
+- **Claude Code**: `/plugin marketplace add MaruPelkar/vaaya-mcp` then `/plugin install vaaya@vaaya`
+- **Codex**: `codex plugin marketplace add MaruPelkar/vaaya-mcp` then install `vaaya` from the Plugins panel
+- **Gemini CLI**: `gemini extensions install https://github.com/MaruPelkar/vaaya-mcp`
 
 ## How it works
 
@@ -73,7 +101,7 @@ capability gap through `consult` automatically.
 
 Plus a full GTM suite (`gtm_leads_find`, `gtm_lead_enrich`, `gtm_signal_create`,
 `gtm_segments`, `gtm_message`, `gtm_replies`, …) and scheduled monitoring
-workers (`worker_create`, `worker_findings`, …) — 33 tools total.
+workers (`worker_create`, `worker_findings`, …) — 34 tools total.
 
 ## Example prompts
 
@@ -84,6 +112,19 @@ workers (`worker_create`, `worker_findings`, …) — 33 tools total.
 - "Do deep research on the agentic payments market with cited sources."
 - "Scrape these 200 product pages into structured JSON."
 - "Run this benchmark in a GPU sandbox."
+
+## CLI
+
+The [`vaaya`](https://www.npmjs.com/package/vaaya) CLI manages everything from
+the terminal:
+
+```bash
+npx vaaya install        # set up the MCP server for every detected agent
+npx vaaya status         # connection state + live tool count
+npx vaaya consult "..."  # ask Vaaya how it would do something (returns the plan)
+npx vaaya reauthorize    # re-run the browser auth flow
+npx vaaya logout         # disconnect & delete local credentials
+```
 
 ## Security & billing
 
@@ -97,5 +138,5 @@ workers (`worker_create`, `worker_findings`, …) — 33 tools total.
 ## Links
 
 - Website & docs: https://vaaya.ai
-- npm: https://www.npmjs.com/package/@vaaya/mcp
+- npm: https://www.npmjs.com/package/@vaaya/mcp · https://www.npmjs.com/package/vaaya
 - Support: support@vaaya.ai

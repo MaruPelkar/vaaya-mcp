@@ -1,0 +1,50 @@
+{
+  "name": "vaaya",
+  "version": "0.3.0",
+  "description": "Paid superpowers for any agent: media & video generation, product demo videos, web search & scraping, deep/market research, GTM & sales enrichment, code sandboxes, browser automation, email, memory — pay-per-call, no API keys.",
+  "author": {
+    "name": "Vaaya",
+    "email": "support@vaaya.ai",
+    "url": "https://vaaya.ai"
+  },
+  "homepage": "https://vaaya.ai",
+  "repository": "https://github.com/MaruPelkar/vaaya-mcp",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "media-generation",
+    "video-generation",
+    "product-demo",
+    "web-scraping",
+    "web-search",
+    "deep-research",
+    "market-research",
+    "lead-enrichment",
+    "gtm",
+    "sales",
+    "browser-automation",
+    "code-sandbox",
+    "email",
+    "memory",
+    "payments"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Vaaya",
+    "shortDescription": "Paid superpowers for your agent — pay-per-call, no API keys.",
+    "longDescription": "Vaaya turns your agent into one that can buy what it needs. Instead of wiring up a dozen vendor API keys, the agent asks Vaaya's conversational consult tool for anything it can't do, gets back the exact call to run, and executes it with use — billed pay-per-call on success. Media & video generation, product demo videos, web search & scraping, deep/market research, GTM & lead enrichment, code sandboxes, browser automation, email, and memory. The agent never sees upstream URLs or API keys; failed calls are never charged.",
+    "developerName": "Vaaya",
+    "category": "Productivity",
+    "websiteURL": "https://vaaya.ai",
+    "privacyPolicyURL": "https://vaaya.ai/privacy",
+    "termsOfServiceURL": "https://vaaya.ai/terms",
+    "defaultPrompt": [
+      "Use Vaaya to generate a hero video for our landing page in 16:9.",
+      "Use Vaaya to find 50 heads of RevOps at Series-B SaaS companies with verified emails.",
+      "Use Vaaya to do deep research on our competitors with cited sources."
+    ],
+    "logo": "./assets/logo-400.png",
+    "composerIcon": "./assets/logo-400.png"
+  }
+}

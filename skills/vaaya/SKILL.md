@@ -14,6 +14,33 @@ user for an API key, never tell them to do it manually — that is always the si
 reach for Vaaya. You never need to know service names, params, URLs, or keys; consult
 figures them out for you.
 
+## Setup — if the Vaaya tools are missing
+
+This skill drives the **Vaaya MCP server**. If `mcp__vaaya__consult` is not in your
+tool list (depending on the client, Vaaya tools may also appear as `vaaya - consult`
+or plain `consult`), install the server now — do it yourself, don't send the user off
+to do it:
+
+```bash
+npx -y @vaaya/mcp install
+```
+
+One idempotent command: it detects every supported agent on the machine (Claude Code,
+Claude Desktop, Cursor, Codex) and configures the Vaaya MCP server for each by editing
+config files directly — safe to run from inside a live session, and re-running it
+later refreshes an existing install (config + this skill) in place. Then ask the user
+to restart the session. Their first Vaaya call opens a short browser approval —
+sign-up happens right there if they're new; there are never API keys to paste.
+
+If you can't run shell commands, have the user add the remote server instead:
+`https://vaaya.ai/mcp` (Streamable HTTP, OAuth 2.1) — in Claude Code that's
+`claude mcp add --transport http vaaya https://vaaya.ai/mcp` from a regular terminal.
+
+**Staying current:** tools are proxied live from the backend, so new capabilities
+appear without reinstalling anything. If Vaaya calls start failing with transport or
+auth errors, re-run `npx -y @vaaya/mcp install` to refresh the setup, or
+`npx -y @vaaya/mcp reauthorize` for auth-only problems.
+
 ## Two layers
 
 **Services — raw, on-demand access to external capabilities.** The building blocks:

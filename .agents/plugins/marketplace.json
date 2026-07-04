@@ -1,0 +1,16 @@
+{
+  "name": "vaaya",
+  "interface": {
+    "displayName": "Vaaya"
+  },
+  "plugins": [
+    {
+      "name": "vaaya",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
