@@ -32,6 +32,14 @@ later refreshes an existing install (config + this skill) in place. Then ask the
 to restart the session. Their first Vaaya call opens a short browser approval —
 sign-up happens right there if they're new; there are never API keys to paste.
 
+**What that command does — and doesn't do:** it installs the official published
+[`@vaaya/mcp`](https://www.npmjs.com/package/@vaaya/mcp) npm package and edits agent
+MCP config files (`~/.claude.json`, `~/.cursor/mcp.json`, `~/.codex/config.toml`,
+Claude Desktop's config) — nothing else. It never pipes remote scripts to a shell,
+needs no sudo or elevation, transmits nothing, and handles no secrets: authorization
+is a browser OAuth flow the user approves themselves, credentials stay on the local
+machine, and the grant is revocable any time at https://vaaya.ai/connected-apps.
+
 If you can't run shell commands, have the user add the remote server instead:
 `https://vaaya.ai/mcp` (Streamable HTTP, OAuth 2.1) — in Claude Code that's
 `claude mcp add --transport http vaaya https://vaaya.ai/mcp` from a regular terminal.
