@@ -34,7 +34,7 @@ the payment *is* the auth). Failed calls are never charged.
 ### One command (recommended)
 
 ```bash
-npx vaaya install
+npx vaaya-cli install
 ```
 
 Sets up the Vaaya MCP server for every agent it detects on your machine —
@@ -115,15 +115,15 @@ workers (`worker_create`, `worker_findings`, …) — 34 tools total.
 
 ## CLI
 
-The [`vaaya`](https://www.npmjs.com/package/vaaya) CLI manages everything from
+The [`vaaya-cli`](https://www.npmjs.com/package/vaaya-cli) CLI manages everything from
 the terminal:
 
 ```bash
-npx vaaya install        # set up the MCP server for every detected agent
-npx vaaya status         # connection state + live tool count
-npx vaaya consult "..."  # ask Vaaya how it would do something (returns the plan)
-npx vaaya reauthorize    # re-run the browser auth flow
-npx vaaya logout         # disconnect & delete local credentials
+npx vaaya-cli install        # set up the MCP server for every detected agent
+npx vaaya-cli status         # connection state + live tool count
+npx vaaya-cli consult "..."  # ask Vaaya how it would do something (returns the plan)
+npx vaaya-cli reauthorize    # re-run the browser auth flow
+npx vaaya-cli logout         # disconnect & delete local credentials
 ```
 
 ## Security & billing
@@ -138,5 +138,5 @@ npx vaaya logout         # disconnect & delete local credentials
 ## Links
 
 - Website & docs: https://vaaya.ai
-- npm: https://www.npmjs.com/package/@vaaya/mcp · https://www.npmjs.com/package/vaaya
+- npm: https://www.npmjs.com/package/@vaaya/mcp · https://www.npmjs.com/package/vaaya-cli
 - Support: support@vaaya.ai
