@@ -5,6 +5,10 @@ user's agent pay-per-call access to paid capabilities (media generation,
 product demo videos, web search/scraping, research, GTM/sales tools, code
 sandboxes, browser automation, email, memory) with no API keys.
 
+Complete agent-readable reference: https://vaaya.ai/llms.txt (index, including
+agent self-serve signup) and https://vaaya.ai/llms-full.txt (every tool with
+parameters).
+
 ## Step 1 — pick the transport
 
 **Remote (preferred when the client supports Streamable HTTP + OAuth):**

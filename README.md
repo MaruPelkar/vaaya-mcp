@@ -138,5 +138,6 @@ npx vaaya-cli logout         # disconnect & delete local credentials
 ## Links
 
 - Website & docs: https://vaaya.ai
+- Agent-readable docs (llms.txt): https://vaaya.ai/llms.txt · full tool reference: https://vaaya.ai/llms-full.txt
 - npm: https://www.npmjs.com/package/@vaaya/mcp · https://www.npmjs.com/package/vaaya-cli
 - Support: support@vaaya.ai
