@@ -1,15 +1,29 @@
-# Publishes every skill folder under skills/ to ClawHub (openclaw skills install vaaya).
-# Requires the CLAWHUB_TOKEN repo secret (ClawHub web UI → API token).
+# Publishes skills/vaaya to ClawHub (openclaw skills install vaaya) on every
+# push that touches skills/. Direct CLI job — no cross-org reusable workflow.
+# Needs the CLAWHUB_TOKEN repo secret (ClawHub web UI → API token).
 name: Publish skills to ClawHub
 on:
   push:
     branches: [main]
     paths: ['skills/**']
   workflow_dispatch:
+permissions:
+  contents: read
 jobs:
   publish:
-    uses: openclaw/clawhub/.github/workflows/skill-publish.yml@main
-    with:
-      dry_run: false
-    secrets:
-      clawhub_token: ${{ secrets.CLAWHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Publish vaaya skill
+        env:
+          CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}
+        run: |
+          npx -y clawhub@latest login --token "$CLAWHUB_TOKEN"
+          npx -y clawhub@latest skill publish skills/vaaya \
+            --slug vaaya --name "Vaaya" \
+            --changelog "Sync from vaaya-ai/vaaya-mcp @ $GITHUB_SHA" \
+            --source-repo vaaya-ai/vaaya-mcp --source-commit "$GITHUB_SHA" \
+            --source-ref "$GITHUB_REF_NAME" --source-path skills/vaaya
